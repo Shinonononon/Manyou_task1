@@ -2,13 +2,14 @@ require 'rails_helper'
 
 RSpec.describe 'タスク管理機能', type: :system do
   describe '登録機能' do
+    let!(:task) { FactoryBot.create(:task) }
+    # beforeメソッドで、動作を共通化
+    before do
+      # タスク一覧画面に遷移
+      visit tasks_path
+    end
     context 'タスクを登録した場合' do
       it '登録したタスクが表示される' do
-        # テストで使用するためのタスクを登録
-        FactoryBot.create(:task)
-        # タスク一覧画面に遷移
-        visit tasks_path
-        # visit（遷移）したpage
         expect(page).to have_content '企画書を作成する。'
       end
     end
@@ -42,12 +43,14 @@ RSpec.describe 'タスク管理機能', type: :system do
   end
 
   describe '詳細表示機能' do
+    let!(:task) { FactoryBot.create(:task) }
+    # beforeメソッドで、動作を共通化
+    before do
+      # タスク一覧画面に遷移
+      visit task_path(task)
+    end
     context '任意のタスク詳細画面に遷移した場合' do
       it 'そのタスクの内容が表示される' do
-        # テストで使用するためのタスクを登録
-        task = FactoryBot.create(:task)
-        # タスク詳細画面に遷移
-        visit task_path(task)
         # 詳細画面にタスクの内容が表示されているかどうか
         expect(page).to have_content '書類作成'
       end
