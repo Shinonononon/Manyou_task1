@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.order(created_at: :desc)
+    @tasks = Task.order(created_at: :desc).page(params[:page])
   end
 
   # GET /tasks/1
