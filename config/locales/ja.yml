@@ -27,6 +27,9 @@ ja:
     destroy: 削除
     back: 戻る
     confirm_destroy: 本当に削除してもよろしいですか？
+  layouts:
+    index-title: タスク一覧
+    new-title: タスクを登録する
   tasks:
     index:
       title: タスク一覧ページ
