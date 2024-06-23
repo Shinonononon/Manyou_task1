@@ -41,7 +41,7 @@ ja:
     update:
       updated: タスクを更新しました
     destroy:
-      destroyed: タスクを削除しました
+      destoryed: タスクを削除しました
   views:
     pagination:
       first: "&laquo; 最初"

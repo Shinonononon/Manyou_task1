@@ -42,7 +42,7 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   def destroy
     @task.destroy
-    redirect_to tasks_url, notice: t('destoryed')
+    redirect_to tasks_url, notice: t('.destoryed')
   end
 
   private
