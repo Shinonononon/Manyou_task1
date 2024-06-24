@@ -21,6 +21,11 @@ module CdpWebManyoTask
         controller_specs: false,
         request_specs: false
     end
+    config.i18n.default_locale = :ja
+    config.time_zone = 'Tokyo'
+
+    # Make Active Record auto-convert to this time zone.
+    config.active_record.default_timezone = :local
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

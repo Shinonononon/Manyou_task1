@@ -1,17 +1,16 @@
-<% content_for :title, "Show Task Page" %>
-<p id="notice"><%= notice %></p>
-<h1>Show Task Page</h1>
+<% content_for :title, t('tasks.show.title') %>
+<h1><%= t('.title') %></h1>
 <p>
-  <strong>Title:</strong>
+  <strong><%= Task.human_attribute_name(:title) %>:</strong>
   <%= @task.title %>
 </p>
 <p>
-  <strong>Content:</strong>
+  <strong><%= Task.human_attribute_name(:content) %>:</strong>
   <%= @task.content %>
 </p>
 <p>
-  <strong>Created_at:</strong>
-  <%= @task.created_at %>
+  <strong><%= Task.human_attribute_name(:created_at) %>:</strong>
+  <%= @task.created_at.strftime(I18n.t('time.formats.custom')) %>
 </p>
-<%= link_to 'Edit', edit_task_path(@task), id: "edit-task" %>
-<%= link_to 'Back', tasks_path ,id: "back" %>
+<%= link_to t('common.edit'), edit_task_path(@task), id: "edit-task" %>
+<%= link_to t('common.back'), tasks_path ,id: "back" %>
