@@ -10,6 +10,19 @@ ja:
         title: タイトル
         content: 内容
         created_at: 作成日時
+        deadline_on: 終了期限
+        priority: 優先度
+        status: ステータス
+  enums:
+    task:
+      priority:
+        low: 低
+        medium: 中
+        high: 高
+      status:
+        NotStarted: 未着手
+        InProgress: 着手中
+        Completed: 完了
   errors:
     format: "%{attribute}%{message}"
     messages:
