@@ -20,6 +20,6 @@ FactoryBot.define do
     content { '明日の会議のための部屋を予約する。' }
     deadline_on { Date.new(2022, 2, 16) }
     priority { :low } # enumの値に合わせてシンボルで指定する
-    status { :NotStarted } # enumの値に合わせてシンボルで指定する
+    status { :Completed } # enumの値に合わせてシンボルで指定する
   end
 end

@@ -14,11 +14,11 @@ class Task < ApplicationRecord
   scope :search, lambda { |search_params|
     return if search_params.blank?
 
-    title_like(search_params[:title])
-      .status_search(search_params[:status])
+    search_title(search_params[:title])
+      .search_status(search_params[:status])
   }
 
-  scope :title_like, ->(title) { where('title LIKE ?', "%#{title}%") if title.present? }
-  scope :status_search, ->(status) { where(status: status) if status.present? }
+  scope :search_title, ->(title) { where('title LIKE ?', "%#{title}%") if title.present? }
+  scope :search_status, ->(status) { where(status: status) if status.present? }
 
 end
