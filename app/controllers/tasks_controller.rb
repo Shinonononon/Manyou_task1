@@ -1,10 +1,36 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[show edit update destroy]
 
   # GET /tasks
   def index
-    @tasks = Task.order(created_at: :desc).page(params[:page])
+    @search_params = task_search_params
+    @tasks = Task.search(@search_params).page(params[:page])
+
+    @tasks = if params[:sort] == 'deadline_on'
+      @tasks.sort_deadline_on
+    elsif params[:sort] == 'priority'
+      @tasks.sort_priority
+    else
+      @tasks.order(created_at: :desc)
+    end
+
+    @tasks = @tasks.page(params[:page])
   end
+
+  # def index
+  #   @tasks = Task.all.page(params[:page])
+  #   #タスク検索機能
+  #   @search_params = task_search_params
+  #   @tasks = Task.search(@search_params)
+
+  #   if params[:sort_deadline_on]
+  #     @tasks = Task.sort_deadline_on.page(params[:page])
+  #   elsif params[:sort_priority]
+  #     @tasks = Task.sort_priority.page(params[:page])
+  #   else
+  #     @tasks = Task.order(created_at: :desc).page(params[:page])
+  #   end
+  # end
 
   # GET /tasks/1
   def show
@@ -55,5 +81,9 @@ class TasksController < ApplicationController
   # Only allow a list of trusted parameters through.
   def task_params
     params.require(:task).permit(:title, :content, :deadline_on, :priority, :status)
+  end
+
+  def task_search_params
+    params.fetch(:search, {}).permit(:title, :status)
   end
 end
