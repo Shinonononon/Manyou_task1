@@ -9,7 +9,7 @@ class TasksController < ApplicationController
     @tasks = if params[:sort] == 'deadline_on'
       @tasks.sort_deadline_on
     elsif params[:sort] == 'priority'
-      @tasks.sort_priority
+      @tasks.sort_priority.order(created_at: :desc)
     else
       @tasks.order(created_at: :desc)
     end
