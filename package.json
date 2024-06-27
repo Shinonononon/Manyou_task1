@@ -16,5 +16,10 @@
   "version": "0.1.0",
   "devDependencies": {
     "webpack-dev-server": "^4.2.1"
-  }
+  },
+  "ruby.rubocop.executePath": "/Users/hikarus/.rbenv/shims/rubocop",
+  "ruby.rubocop.configFilePath": "/path/to/config/.rubocop.yml",
+  "ruby.rubocop.onSave": true,
+  "ruby.format.executePath": "/Users/hikarus/.rbenv/shims/htmlbeautifier",
+  "ruby.format.command": "exec htmlbeautifier"
 }
