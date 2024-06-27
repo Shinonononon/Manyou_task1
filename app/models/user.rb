@@ -7,4 +7,12 @@ format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, confirmation: true
   #validates :password_confirmation, presence: true
   before_validation { email.downcase! }
   has_secure_password
+
+  def admin_status
+    admin? ? I18n.t('users.admin_status.true') : I18n.t('users.admin_status.false')
+  end
+
+  def task_count
+    tasks.count
+  end
 end

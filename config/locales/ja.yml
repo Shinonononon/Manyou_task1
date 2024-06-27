@@ -5,6 +5,7 @@ ja:
   activerecord:
     models:
       task: タスク
+      user: ユーザー
     attributes:
       task:
         title: タイトル
@@ -19,6 +20,7 @@ ja:
         password: パスワード
         password_confirmation: パスワード(確認)
         admin: 管理者権限
+        task_count: タスク数
   enums:
     task:
       priority:
@@ -54,6 +56,8 @@ ja:
     sign-out: ログアウト
     sign-up: アカウント登録
     sign-in: ログイン
+    add-user: ユーザを登録する
+    user-index: ユーザ一覧
   tasks:
     index:
       title: タスク一覧ページ
@@ -68,7 +72,7 @@ ja:
     update:
       updated: タスクを更新しました
     destroy:
-      destoryed: タスクを削除しました
+      destroyed: タスクを削除しました
   users:
     new:
       title: アカウント登録ページ
@@ -80,11 +84,23 @@ ja:
       created: アカウントを登録しました
     update:
       updated: アカウントを更新しました
+    admin_status:
+      true: "あり"
+      false: "なし"
   sessions:
     new:
       title: ログインページ
     create:
       created: ログインしました
+  admins:
+    index:
+      title: ユーザ一覧ページ
+    new:
+      title: ユーザ登録ページ
+    show:
+      title: ユーザ詳細ページ
+    edit:
+      title: ユーザ編集ページ
   views:
     pagination:
       first: "&laquo; 最初"

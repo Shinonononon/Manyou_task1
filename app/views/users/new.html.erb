@@ -1,5 +1,5 @@
 <% content_for :title, t('users.new.title') %>
-<h1><%= t('users.new.header') %></h1>
+<h1><%= t('users.new.title') %></h1>
 <%= form_with(model: @user, local: true) do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">

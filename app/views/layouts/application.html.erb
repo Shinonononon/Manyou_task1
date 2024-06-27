@@ -12,8 +12,8 @@
     <% if logged_in? %>
       <ul>
         <% if current_user.admin? %>
-          <li><%= link_to 'User Management', admin_users_path, id: "admin-users-index" %></li>
-          <li><%= link_to 'New User', new_admin_user_path, id: "admin-users-new" %></li>
+          <li><%= link_to t('layouts.user-index'), admin_users_path, id: "users-index" %></li>
+          <li><%= link_to t('layouts.add-user'), new_admin_user_path, id: "add-user" %></li>
         <% end %>
         <li><%= link_to t('layouts.index-title'), tasks_path, id: "tasks-index" %></li>
         <li><%= link_to t('layouts.new-title'), new_task_path, id: "new-task" %></li>

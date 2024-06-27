@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   # GET /tasks
   def index
     @search_params = task_search_params
-    @tasks = Task.search(@search_params).page(params[:page])
+    @tasks = current_user.tasks.search(@search_params).page(params[:page])
 
     @tasks = if params[:sort] == 'deadline_on'
       @tasks.sort_deadline_on
@@ -34,20 +34,22 @@ class TasksController < ApplicationController
 
   # GET /tasks/1
   def show
+    @task = current_user.tasks.find(params[:id])
   end
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    @task = current_user.tasks.new
   end
 
   # GET /tasks/1/edit
   def edit
+    @task = current_user.tasks.find(params[:id])
   end
 
   # POST /tasks
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.new(task_params)
 
     if @task.save
       redirect_to tasks_path, notice: t('.created')
@@ -75,7 +77,7 @@ class TasksController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_task
-    @task = Task.find(params[:id])
+    @task = current_user.task.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
