@@ -11,6 +11,10 @@
     <p id="notice"><%= notice %></p>
     <% if logged_in? %>
       <ul>
+        <% if current_user.admin? %>
+          <li><%= link_to 'User Management', admin_users_path, id: "admin-users-index" %></li>
+          <li><%= link_to 'New User', new_admin_user_path, id: "admin-users-new" %></li>
+        <% end %>
         <li><%= link_to t('layouts.index-title'), tasks_path, id: "tasks-index" %></li>
         <li><%= link_to t('layouts.new-title'), new_task_path, id: "new-task" %></li>
         <li><%= link_to t('layouts.account-setting'), user_path(current_user.id), id: "account-setting" %></li>
