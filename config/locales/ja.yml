@@ -13,6 +13,11 @@ ja:
         deadline_on: 終了期限
         priority: 優先度
         status: ステータス
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード(確認)
   enums:
     task:
       priority:
@@ -39,10 +44,15 @@ ja:
     edit: 編集
     destroy: 削除
     back: 戻る
+    log-in: ログイン
     confirm_destroy: 本当に削除してもよろしいですか？
   layouts:
     index-title: タスク一覧
     new-title: タスクを登録する
+    account-setting: アカウント設定
+    sign-out: ログアウト
+    sign-up: アカウント登録
+    sign-in: ログイン
   tasks:
     index:
       title: タスク一覧ページ
@@ -58,6 +68,22 @@ ja:
       updated: タスクを更新しました
     destroy:
       destoryed: タスクを削除しました
+  users:
+    new:
+      title: アカウント登録ページ
+    show:
+      title: アカウント詳細ページ
+    edit:
+      title: アカウント編集ページ
+    create:
+      created: アカウントを登録しました
+    update:
+      updated: アカウントを更新しました
+  sessions:
+    new:
+      title: ログインページ
+    create:
+      created: ログインしました
   views:
     pagination:
       first: "&laquo; 最初"

@@ -31,8 +31,6 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path
       flash[:notice] = 'アカウントを更新しました'
-      # noticeで二重に出ない。逆に。htmlにnotice以外のやつを入れると、表示ができる。
-      # ここは要検討
     else
       render :edit
     end
