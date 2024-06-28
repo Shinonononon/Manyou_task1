@@ -13,7 +13,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to admin_users_path, notice: t('.created')
+      redirect_to admin_users_path, notice: t('admins.create.created')
     else
       render :new
     end
@@ -30,7 +30,7 @@ class Admin::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to admin_users_path, notice: t('.updated')
+      redirect_to admin_users_path, notice: t('admins.update.updated')
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to admin_users_path, notice: t('.destroyed')
+    redirect_to admin_users_path, notice: t('admins.destroy.destroyed')
   end
 
   private
@@ -57,8 +57,8 @@ class Admin::UsersController < ApplicationController
 
   def admin_required
     unless admin_user?
-      flash[:notice] = "管理者以外アクセスできません"
-      redirect_to tasks_path(current_user)
+      flash[:notice] = t('common.admin_required')
+      redirect_to tasks_path
     end
   end
 end

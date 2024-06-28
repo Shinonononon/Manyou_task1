@@ -79,15 +79,4 @@ class TasksController < ApplicationController
     redirect_to tasks_path, notice: t('common.not_privilege') if @task.nil?
   end
 
-  # def correct_task
-  #   @task = current_user.tasks.find(params[:id])
-  #   #unless current_user?(@user)
-  # end
-
-  # def required_correct
-  #   unless correct_task?
-  #     flash[:notice] = t('common.not_privilege')
-  #     redirect_to tasks_path
-  #   end
-  # end
 end

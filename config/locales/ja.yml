@@ -50,6 +50,9 @@ ja:
     log-in: ログイン
     confirm_destroy: 本当に削除してもよろしいですか？
     not_privilege: アクセス権限がありません
+    login_required: ログインしてください
+    logout_required: ログアウトしてください
+    admin_required: 管理者以外アクセスできません
   layouts:
     index-title: タスク一覧
     new-title: タスクを登録する

@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
 
   def logout_required
     unless logged_out?
-      flash[:notice] = "ログアウトしてください"
+      flash[:notice] = t('common.logout_required')
       redirect_to tasks_path(current_user)
     end
   end
