@@ -1,16 +1,6 @@
 <% content_for :title, t('users.edit.title') %>
-<h1>アカウント編集ページ</h1>
+<h1><%= t('users.edit.title') %></h1>
 <%= form_with(model: @user, local: true) do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %><br>
-  <%= f.submit t('helpers:submit.update') %>
-  <%= link_to t('common.back'), user_path(@user), id: "back"%>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "エラー") %>が発生しました:</h2>
@@ -21,4 +11,14 @@
       </ul>
     </div>
   <% end %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %><br>
+  <%= f.submit t('helpers.submit.update', model: User.model_name.human), id: "update-user" %>
+  <%= link_to t('common.back'), user_path(@user), id: "back"%>
 <% end %>
