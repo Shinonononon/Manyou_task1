@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   before_action :login_required
 
+
   private
 
   def login_required
@@ -10,4 +11,5 @@ class ApplicationController < ActionController::Base
       redirect_to new_session_path
     end
   end
+
 end

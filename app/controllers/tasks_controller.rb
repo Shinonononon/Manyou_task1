@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
+  before_action :correct_task, only: %i[show edit update destroy]
 
   # GET /tasks
   def index
@@ -17,24 +18,8 @@ class TasksController < ApplicationController
     @tasks = @tasks.page(params[:page])
   end
 
-  # def index
-  #   @tasks = Task.all.page(params[:page])
-  #   #タスク検索機能
-  #   @search_params = task_search_params
-  #   @tasks = Task.search(@search_params)
-
-  #   if params[:sort_deadline_on]
-  #     @tasks = Task.sort_deadline_on.page(params[:page])
-  #   elsif params[:sort_priority]
-  #     @tasks = Task.sort_priority.page(params[:page])
-  #   else
-  #     @tasks = Task.order(created_at: :desc).page(params[:page])
-  #   end
-  # end
-
   # GET /tasks/1
   def show
-    @task = current_user.tasks.find(params[:id])
   end
 
   # GET /tasks/new
@@ -44,7 +29,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
-    @task = current_user.tasks.find(params[:id])
+    @task = tasks.find(params[:id])
   end
 
   # POST /tasks
@@ -77,7 +62,7 @@ class TasksController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_task
-    @task = current_user.task.find(params[:id])
+    @task = Task.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
@@ -88,4 +73,21 @@ class TasksController < ApplicationController
   def task_search_params
     params.fetch(:search, {}).permit(:title, :status)
   end
+
+  def correct_task
+    @task = current_user.tasks.find_by(id: params[:id])
+    redirect_to tasks_path, notice: t('common.not_privilege') if @task.nil?
+  end
+
+  # def correct_task
+  #   @task = current_user.tasks.find(params[:id])
+  #   #unless current_user?(@user)
+  # end
+
+  # def required_correct
+  #   unless correct_task?
+  #     flash[:notice] = t('common.not_privilege')
+  #     redirect_to tasks_path
+  #   end
+  # end
 end

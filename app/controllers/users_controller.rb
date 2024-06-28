@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :correct_user, only: [:show,:update,:destroy,:edit]
   skip_before_action :login_required, only: [:new, :create]
+
   # skipで、applicationControllerに記入されている、login_requiredを限定的に飛ばす。
 
   def new

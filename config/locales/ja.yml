@@ -49,6 +49,7 @@ ja:
     back: 戻る
     log-in: ログイン
     confirm_destroy: 本当に削除してもよろしいですか？
+    not_privilege: アクセス権限がありません
   layouts:
     index-title: タスク一覧
     new-title: タスクを登録する
@@ -92,6 +93,8 @@ ja:
       title: ログインページ
     create:
       created: ログインしました
+    destroy:
+      destroyed: ログアウトしました
   admins:
     index:
       title: ユーザ一覧ページ
@@ -101,6 +104,12 @@ ja:
       title: ユーザ詳細ページ
     edit:
       title: ユーザ編集ページ
+    create:
+      created: ユーザを登録しました
+    update:
+      updated: ユーザを更新しました
+    destroy:
+      destroyed: ユーザを削除しました
   views:
     pagination:
       first: "&laquo; 最初"

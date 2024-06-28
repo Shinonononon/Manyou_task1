@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
+  before_action :logout_required, only: [:new, :create]
 
   def new
   end
@@ -8,8 +9,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       log_in(user)
-      redirect_to tasks_path
-      flash[:notice] = 'ログインしました'
+      redirect_to tasks_path, notice: t('.created')
     else
       flash[:notice] = 'メールアドレスまたはパスワードに誤りがあります'
       render :new
@@ -18,8 +18,16 @@ class SessionsController < ApplicationController
 
   def destroy
     session.delete(:user_id)
-    flash[:notice] = 'ログアウトしました'
-    redirect_to new_session_path
+    redirect_to new_session_path, notice: t('.destroyed')
+  end
+
+  private
+
+  def logout_required
+    unless logged_out?
+      flash[:notice] = "ログアウトしてください"
+      redirect_to tasks_path(current_user)
+    end
   end
 
 end

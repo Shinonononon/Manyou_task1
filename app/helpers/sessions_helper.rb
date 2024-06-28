@@ -8,6 +8,10 @@ module SessionsHelper
     current_user.present?
   end
 
+  def logged_out?
+    current_user.blank?
+  end
+
   def log_in(user)
     session[:user_id] = user.id
   end
