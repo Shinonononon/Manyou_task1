@@ -3,6 +3,8 @@ ja:
     formats:
       custom: "%Y/%m/%d %H:%M"
   activerecord:
+    base:
+      admin_last_one: "管理者が0人になるため削除できません"
     models:
       task: タスク
       user: ユーザー
@@ -53,6 +55,7 @@ ja:
     login_required: ログインしてください
     logout_required: ログアウトしてください
     admin_required: 管理者以外アクセスできません
+    admin_last_one: 管理者が0人になるため削除できません
   layouts:
     index-title: タスク一覧
     new-title: タスクを登録する

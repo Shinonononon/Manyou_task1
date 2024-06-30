@@ -20,25 +20,31 @@ class Admin::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    # set_userメソッドで@userが設定されているため、追加の処理は不要です
+    # set_userメソッドで@userが設定されているため、追加の処理は不要
   end
 
   def edit
-    # set_userメソッドで@userが設定されているため、追加の処理は不要です
+    # set_userメソッドで@userが設定されているため、追加の処理は不要
   end
 
   def update
     if @user.update(user_params)
       redirect_to admin_users_path, notice: t('admins.update.updated')
+    elsif @user.admin_last_one
+      flash[:notice] = @user.errors.full_messages.join(', ')
+      redirect_to edit_admin_user_path
     else
       render :edit
     end
   end
 
   def destroy
-    @user.destroy
-    redirect_to admin_users_path, notice: t('admins.destroy.destroyed')
+    if @user.destroy
+      redirect_to admin_users_path, notice: t('admins.destroy.destroyed')
+    else
+      flash[:notice] = @user.errors.full_messages.join(', ')
+      redirect_to admin_users_path
+    end
   end
 
   private
@@ -56,7 +62,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def admin_required
-    unless admin_user?
+    unless current_user.admin?
       flash[:notice] = t('common.admin_required')
       redirect_to tasks_path
     end
