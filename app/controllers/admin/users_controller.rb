@@ -30,9 +30,9 @@ class Admin::UsersController < ApplicationController
   def update
     if @user.update(user_params)
       redirect_to admin_users_path, notice: t('admins.update.updated')
-    elsif @user.admin_last_one
-      flash[:notice] = @user.errors.full_messages.join(', ')
-      redirect_to edit_admin_user_path
+    # elsif @user.admin_last_one
+    #   flash[:notice] = @user.errors.full_messages.join(', ')
+    #   redirect_to edit_admin_user_path
     else
       render :edit
     end

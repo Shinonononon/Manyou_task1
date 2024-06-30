@@ -36,9 +36,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if @user.destroy
-      redirect_to new_session_path, notice: t('.destroyed')
-  end
+    @user.destroy
+    redirect_to new_session_path, notice: t('.destroyed')
 end
 
 
