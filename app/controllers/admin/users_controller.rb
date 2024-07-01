@@ -34,8 +34,8 @@ class Admin::UsersController < ApplicationController
     #   flash[:notice] = @user.errors.full_messages.join(', ')
     #   redirect_to edit_admin_user_path
     else
-      flash[:notice] = @user.errors.full_messages.join(', ')
-      redirect_to admin_users_path
+      # redirect_to edit_admin_user_path(@user)
+      render 'edit'
     end
   end
 
