@@ -26,7 +26,7 @@ format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, confirmation: true
 
   def dont_edit_last_admin
     if User.where(admin: true).count == 1 && self.admin_was && !self.admin?
-      errors.add(:base, '管理者が0人になるため編集できません')
+      errors.add(:base, '管理者が0人になるため権限を変更できません')
       # flash[:notice] = t('common.admin_last_one')
       throw :abort
     end
