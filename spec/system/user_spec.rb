@@ -86,12 +86,35 @@ RSpec.describe 'ユーザ管理機能', type: :system do
       it 'ユーザ編集画面から、自分以外のユーザを編集できる' do
         user3 = FactoryBot.create(:third_user)
         visit edit_admin_user_path(user3)
+        fill_in '名前', with: '編集'
+        fill_in 'メールアドレス', with: 'edit@test.com'
+        fill_in 'パスワード', with: 'editgg'
+        fill_in 'パスワード（確認）', with: 'editgg'
+        check 'admin_check'
+        click_on '更新する'
+        expect(page).to have_content 'ユーザを更新しました'
       end
       it 'ユーザを削除できる' do
+        user3 = FactoryBot.create(:third_user)
+        visit admin_users_path
+        accept_alert do
+          click_link '削除', href: admin_user_path(user3)
+        end
+        expect(page).to have_content 'ユーザを削除しました'
       end
     end
     context '一般ユーザがユーザ一覧画面にアクセスした場合' do
+      before do
+        click_on 'ログアウト'
+        user3 = FactoryBot.create(:third_user)
+        fill_in 'login_mail',	with: user3.email
+        fill_in 'login_pass', with: user3.password
+        click_on 'create-session'
+      end
       it 'タスク一覧画面に遷移し、「管理者以外アクセスできません」というエラーメッセージが表示される' do
+        visit admin_users_path
+        expect(current_path).to eq tasks_path
+        expect(page).to have_content '管理者以外アクセスできません'
       end
     end
   end
