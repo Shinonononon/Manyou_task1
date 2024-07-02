@@ -20,6 +20,6 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
   <%= f.label :admin %>
-  <%= f.check_box :admin %><br>
+  <%= f.check_box :admin , id: 'admin_check' %><br>
   <%= f.submit t('helpers.submit.create', model: User.model_name.human), id: "create-user" %>
 <% end %>
