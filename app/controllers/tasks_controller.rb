@@ -1,10 +1,11 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show edit update destroy]
+  before_action :correct_task, only: %i[show edit update destroy]
 
   # GET /tasks
   def index
     @search_params = task_search_params
-    @tasks = Task.search(@search_params).page(params[:page])
+    @tasks = current_user.tasks.search(@search_params).page(params[:page])
 
     @tasks = if params[:sort] == 'deadline_on'
       @tasks.sort_deadline_on
@@ -17,37 +18,23 @@ class TasksController < ApplicationController
     @tasks = @tasks.page(params[:page])
   end
 
-  # def index
-  #   @tasks = Task.all.page(params[:page])
-  #   #タスク検索機能
-  #   @search_params = task_search_params
-  #   @tasks = Task.search(@search_params)
-
-  #   if params[:sort_deadline_on]
-  #     @tasks = Task.sort_deadline_on.page(params[:page])
-  #   elsif params[:sort_priority]
-  #     @tasks = Task.sort_priority.page(params[:page])
-  #   else
-  #     @tasks = Task.order(created_at: :desc).page(params[:page])
-  #   end
-  # end
-
   # GET /tasks/1
   def show
   end
 
   # GET /tasks/new
   def new
-    @task = Task.new
+    @task = current_user.tasks.new
   end
 
   # GET /tasks/1/edit
   def edit
+    @task = tasks.find(params[:id])
   end
 
   # POST /tasks
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.new(task_params)
 
     if @task.save
       redirect_to tasks_path, notice: t('.created')
@@ -86,4 +73,10 @@ class TasksController < ApplicationController
   def task_search_params
     params.fetch(:search, {}).permit(:title, :status)
   end
+
+  def correct_task
+    @task = current_user.tasks.find_by(id: params[:id])
+    redirect_to tasks_path, notice: t('common.not_privilege') if @task.nil?
+  end
+
 end

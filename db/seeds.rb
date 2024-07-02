@@ -6,17 +6,38 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# 50.times do |i|
-#   Task.create!(title: "Task#{i+1}" , content: "test#{i+1}")
-# end
+# アドミンユーザー作成
+admin = User.create!(
+  name: 'Admin',
+  email: 'admintest@example.com',
+  password: 'password',
+  password_confirmation: 'password',
+  admin: true
+)
 
+# 通常ユーザー作成
+user = User.create!(
+  name: 'User',
+  email: 'usertest@example.com',
+  password: 'password',
+  password_confirmation: 'password',
+  admin: false
+)
 
-5.times do |i|
-  Task.create!(title: "first_task" , content: "test#{i+1}", deadline_on: Date.new(2022, 2, 18), priority: :medium, status: :NotStarted )
+# アドミンタスク
+50.times do |i|
+  Task.create!(
+    title: "Admin Task #{i + 1}",
+    content: "admin test #{i + 1}",
+    user: admin
+  )
 end
-5.times do |i|
-  Task.create!(title: "second_task" , content: "test#{i+1}", deadline_on: Date.new(2022, 2, 17), priority: :high, status: :InProgress )
-end
-5.times do |i|
-  Task.create!(title: "third_task" , content: "test#{i+1}", deadline_on: Date.new(2022, 2, 16), priority: :low, status: :Completed )
+
+# ユーザーたすく
+50.times do |i|
+  Task.create!(
+    title: "User Task #{i + 1}",
+    content: "user test #{i + 1}",
+    user: user
+  )
 end

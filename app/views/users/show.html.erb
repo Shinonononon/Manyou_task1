@@ -1,0 +1,5 @@
+<% content_for :title, t('users.show.title') %>
+<h1><%= t('users.show.title') %></h1>
+<p>名前： <%= @user.name %></p>
+<p>メールアドレス: <%= @user.email %></p>
+<%= link_to t('common.edit'), edit_user_path(@user), id:"edit-user" %>

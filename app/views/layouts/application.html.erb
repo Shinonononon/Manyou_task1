@@ -9,10 +9,23 @@
   </head>
   <body>
     <p id="notice"><%= notice %></p>
-    <ul>
-      <li><%= link_to t('layouts.index-title'), tasks_path, id: "tasks-index" %></li>
-      <li><%= link_to t('layouts.new-title'), new_task_path, id: "new-task" %></li>
-    </ul>
+    <% if logged_in? %>
+      <ul>
+        <% if current_user.admin? %>
+          <li><%= link_to t('layouts.user-index'), admin_users_path, id: "users-index" %></li>
+          <li><%= link_to t('layouts.add-user'), new_admin_user_path, id: "add-user" %></li>
+        <% end %>
+        <li><%= link_to t('layouts.index-title'), tasks_path, id: "tasks-index" %></li>
+        <li><%= link_to t('layouts.new-title'), new_task_path, id: "new-task" %></li>
+        <li><%= link_to t('layouts.account-setting'), user_path(current_user.id), id: "account-setting" %></li>
+        <li><%= link_to t('layouts.sign-out'), session_path(current_user.id),method: :delete, id: "sign-out" %></li>
+      </ul>
+    <% else %>
+      <ul>
+        <li><%= link_to t('layouts.sign-up'), new_user_path, id: "sign-up" %></li>
+        <li><%= link_to t('layouts.sign-in'), new_session_path, id: "sign-in" %></li>
+      </ul>
+    <%end%>
     <%= yield %>
   </body>
 </html>
