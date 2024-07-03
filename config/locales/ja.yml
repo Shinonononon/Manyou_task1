@@ -65,6 +65,8 @@ ja:
     sign-in: ログイン
     add-user: ユーザを登録する
     user-index: ユーザ一覧
+    labels-index: ラベル一覧
+    new-label: ラベルを登録する
   tasks:
     index:
       title: タスク一覧ページ
