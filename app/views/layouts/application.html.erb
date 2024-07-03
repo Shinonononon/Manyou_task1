@@ -18,7 +18,7 @@
         <li><%= link_to t('layouts.index-title'), tasks_path, id: "tasks-index" %></li>
         <li><%= link_to t('layouts.new-title'), new_task_path, id: "new-task" %></li>
         <li><%= link_to t('layouts.labels-index'), labels_path, id:"labels-index" %></li>
-        <li><%= link_to t('layouts.new-label'), new_label_path,id:"new-label" %></li>
+        <li><%= link_to t('layouts.new-label'), new_label_path, id:"new-label" %></li>
         <li><%= link_to t('layouts.account-setting'), user_path(current_user.id), id: "account-setting" %></li>
         <li><%= link_to t('layouts.sign-out'), session_path(current_user.id),method: :delete, id: "sign-out" %></li>
       </ul>

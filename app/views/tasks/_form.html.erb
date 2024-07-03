@@ -29,6 +29,12 @@
     <%= form.label :status %>
     <%= form.select :status, Task.statuses.keys.map { |k, i| [t("enums.task.status.#{k}"), k] }, { include_blank: true } %>
   </div>
+  <div>
+    <% Label.all.each do |label| %>
+      <%= form.check_box :label_ids, { multiple: true, include_hidden: false }, label[:id] %>
+      <%= label.name %>
+    <% end %>
+  </div>
   <div class="actions">
     <%= form.submit id: button_id%>
   </div>

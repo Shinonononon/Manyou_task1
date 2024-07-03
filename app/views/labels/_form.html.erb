@@ -10,24 +10,8 @@
     </div>
   <% end %>
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-  <div class="field">
-    <%= form.label :deadline_on %>
-    <%= form.date_field :deadline_on %>
-  </div>
-  <div class="field">
-    <%= form.label :priority %>
-    <%= form.select :priority, label.priorities.keys.map { |k, i| [t("enums.label.priority.#{k}"), k] }, {include_blank: true } %>
-  </div>
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.select :status, label.statuses.keys.map { |k, i| [t("enums.label.status.#{k}"), k] }, { include_blank: true } %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
   </div>
   <div class="actions">
     <%= form.submit id: button_id%>
