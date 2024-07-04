@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-  has_many :labels
+  has_and_belongs_to_many :labels
   belongs_to :user
   enum priority: { low: 0, medium: 1, high: 2 }
   enum status: { NotStarted: 0, InProgress: 1, Completed: 2 }

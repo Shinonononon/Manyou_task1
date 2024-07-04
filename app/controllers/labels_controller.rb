@@ -1,7 +1,9 @@
 class LabelsController < ApplicationController
+  before_action :set_label, only: %i[show edit update destroy]
+  before_action :correct_label, only: %i[show edit update destroy]
 
-  def Index
-    @labels = current_user.labels.all
+  def index
+    @labels = Label.all
   end
   # GET /labels/1
   def show
@@ -9,7 +11,7 @@ class LabelsController < ApplicationController
 
   # GET /labels/new
   def new
-    @label = current_user.labels.new
+    @label = Label.new
   end
 
   # GET /labels/1/edit
@@ -19,7 +21,7 @@ class LabelsController < ApplicationController
 
   # POST /labels
   def create
-    @label = current_user.labels.new(label_params)
+    @label = Label.new(label_params)
 
     if @label.save
       redirect_to labels_path, notice: t('.created')
@@ -55,7 +57,7 @@ class LabelsController < ApplicationController
   end
 
   def correct_label
-    @label = current_user.labels.find_by(id: params[:id])
+    @label = Label.find_by(id: params[:id])
     redirect_to labels_path, notice: t('common.not_privilege') if @label.nil?
   end
 end
