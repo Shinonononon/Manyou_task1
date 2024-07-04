@@ -3,25 +3,22 @@ class LabelsController < ApplicationController
   before_action :correct_label, only: %i[show edit update destroy]
 
   def index
-    @labels = Label.all
+    @labels = current_user.labels.includes(:tasks).all
   end
-  # GET /labels/1
+
   def show
   end
 
-  # GET /labels/new
   def new
-    @label = Label.new
+    @label = current_user.labels.new
   end
 
-  # GET /labels/1/edit
   def edit
-    @tlabel = labels.find(params[:id])
+    @label = current_user.labels.find(params[:id])
   end
 
-  # POST /labels
   def create
-    @label = Label.new(label_params)
+    @label = current_user.labels.new(label_params)
 
     if @label.save
       redirect_to labels_path, notice: t('.created')
@@ -30,7 +27,6 @@ class LabelsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /labels/1
   def update
     if @label.update(label_params)
       redirect_to @label, notice: t('.updated')
@@ -39,7 +35,6 @@ class LabelsController < ApplicationController
     end
   end
 
-  # DELETE /labels/1
   def destroy
     @label.destroy
     redirect_to labels_url, notice: t('.destoryed')
@@ -48,16 +43,15 @@ class LabelsController < ApplicationController
   private
 
   def set_label
-    @label = label.find(params[:id])
+    @label = Label.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def label_params
     params.require(:label).permit(:name)
   end
 
   def correct_label
-    @label = Label.find_by(id: params[:id])
+    @label = current_user.labels.find_by(id: params[:id])
     redirect_to labels_path, notice: t('common.not_privilege') if @label.nil?
   end
 end
