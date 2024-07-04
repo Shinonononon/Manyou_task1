@@ -29,7 +29,7 @@ class LabelsController < ApplicationController
 
   def update
     if @label.update(label_params)
-      redirect_to @label, notice: t('.updated')
+      redirect_to labels_path, notice: t('.updated')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class LabelsController < ApplicationController
 
   def destroy
     @label.destroy
-    redirect_to labels_url, notice: t('.destoryed')
+    redirect_to labels_path, notice: t('.destoryed')
   end
 
   private

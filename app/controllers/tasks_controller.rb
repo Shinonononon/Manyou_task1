@@ -10,10 +10,23 @@ class TasksController < ApplicationController
     @tasks = if params[:sort] == 'deadline_on'
       @tasks.sort_deadline_on
     elsif params[:sort] == 'priority'
-      @tasks.sort_priority.order(created_at: :desc)
+      @tasks.sort_priority.order
     else
       @tasks.order(created_at: :desc)
     end
+
+    # if params[:search].present?
+    #   if @search_params[:title].present? && @search_params[:status].present?
+    #     @tasks = @tasks.search_title(@search_params[:title]).search_status(@search_params[:status])
+    #   elsif @search_params[:title].present?
+    #     @tasks = @tasks.search_title(@search_params[:title])
+    #   elsif @search_params[:status].present?
+    #     @tasks = @tasks.search_status(@search_params[:status])
+    #   elsif @search_params[:label].present?
+    #     @tasks = @tasks.search_label(@search_params[:label])
+    #   end
+    # end
+
 
     @tasks = @tasks.page(params[:page])
   end
@@ -71,7 +84,7 @@ class TasksController < ApplicationController
   end
 
   def task_search_params
-    params.fetch(:search, {}).permit(:title, :status)
+    params.fetch(:search, {}).permit(:title, :status, :label)
   end
 
   def correct_task
