@@ -30,8 +30,9 @@
     <%= form.select :status, Task.statuses.keys.map { |k, i| [t("enums.task.status.#{k}"), k] }, { include_blank: true } %>
   </div>
   <div class="field">
+    <%= form.label :label %>
     <% current_user.labels.all.each do |label| %>
-      <%= form.check_box :label_ids, { multiple: true, include_hidden: false }, label[:id] %>
+      <%= form.check_box :label_ids, { multiple: true, include_hidden: false }, label[:id]%>
       <%= label.name %>
     <% end %>
   </div>

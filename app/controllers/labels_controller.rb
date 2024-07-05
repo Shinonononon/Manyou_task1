@@ -37,7 +37,7 @@ class LabelsController < ApplicationController
 
   def destroy
     @label.destroy
-    redirect_to labels_path, notice: t('.destoryed')
+    redirect_to labels_path, notice: t('.destroyed')
   end
 
   private
