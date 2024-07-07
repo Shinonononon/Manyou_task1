@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="app/assets/stylsheets/app.css">
   </head>
   <body>
     <p id="notice"><%= notice %></p>
@@ -26,7 +27,7 @@
               <li class="nav-item"><%= link_to t('layouts.labels-index'), labels_path, id:"labels-index" ,class: 'mr-1'%></li>
               <li class="nav-item"><%= link_to t('layouts.new-label'), new_label_path, id:"new-label" ,class: 'mr-1'%></li>
               <li class="nav-item"><%= link_to t('layouts.account-setting'), user_path(current_user.id), id: "account-setting" ,class: 'mr-1'%></li>
-              <li class="nav-item"><%= link_to t('layouts.sign-out'), session_path(current_user.id),method: :delete, id: "sign-out" ,class: 'mr-1'%></li>
+              <li class="nav-item"><%= button_to t('layouts.sign-out'), session_path(current_user.id),method: :delete, id: "sign-out",class: "btn btn-link" %></li>
             </ul>
           <% else %>
             <ul class="navbar-nav">

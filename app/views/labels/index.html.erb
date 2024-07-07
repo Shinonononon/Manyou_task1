@@ -14,7 +14,7 @@
         <td class="label-name"><%= label.name %></td>
         <td><%= label.tasks.size %></td>
         <td><%= link_to t('common.edit'), edit_label_path(label), class: "edit-label" %></td>
-        <td><%= link_to t('common.destroy'), label, method: :delete, data: { confirm: t('common.confirm_destroy') } , class: "destroy-label" %></td>
+        <td><%= button_to t('common.destroy'), label, method: :delete, data: { confirm: t('common.confirm_destroy') } , class: "destroy-label btn btn-link" %></td>
       </tr>
     <% end %>
   </tbody>

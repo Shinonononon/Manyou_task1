@@ -1,12 +1,13 @@
 class LabelsController < ApplicationController
-  before_action :set_label, only: %i[show edit update destroy]
-  before_action :correct_label, only: %i[show edit update destroy]
+  before_action :set_label, only: %i[edit update destroy]
+  before_action :correct_label, only: %i[edit update destroy]
 
   def index
     @labels = current_user.labels.includes(:tasks).all
   end
 
   def show
+    redirect_to labels_path
   end
 
   def new

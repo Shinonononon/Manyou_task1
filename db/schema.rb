@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_07_04_060015) do
+ActiveRecord::Schema.define(version: 2024_07_06_142435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2024_07_04_060015) do
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.date "deadline_on", default: "2024-07-02", null: false
+    t.date "deadline_on", default: "2024-07-06", null: false
     t.integer "priority", default: 0, null: false
     t.integer "status", default: 0, null: false
     t.integer "user_id"
@@ -41,7 +41,9 @@ ActiveRecord::Schema.define(version: 2024_07_04_060015) do
     t.bigint "label_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["label_id", "task_id"], name: "index_tasks_labels_on_label_id_and_task_id", unique: true
     t.index ["label_id"], name: "index_tasks_labels_on_label_id"
+    t.index ["task_id", "label_id"], name: "index_tasks_labels_on_task_id_and_label_id", unique: true
     t.index ["task_id"], name: "index_tasks_labels_on_task_id"
   end
 

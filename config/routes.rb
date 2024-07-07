@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create, :show, :destroy, :edit, :update]
-  get '*path', to: 'application#render404'
-  get '*path', to: 'application#render500'
+  # get '*path', to: 'application#render404'
+  # get '*path', to: 'application#render500'
 
 
 
