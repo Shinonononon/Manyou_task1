@@ -1,9 +1,14 @@
 <% content_for :title, t('sessions.new.title') %>
 <h1><%= t('sessions.new.title') %></h1>
 <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
-  <%= f.label 'メールアドレス' %>
-  <%= f.email_field :email , id:'login_mail'%>
-  <%= f.label 'パスワード' %>
-  <%= f.password_field :password, id:'login_pass' %>
-  <%= f.submit t('common.log-in'), id:"create-session" %>
+  <div class="mb-3">
+    <%= f.label 'メールアドレス' ,class: "form-label"%>
+    <%= f.email_field :email , id:'login_mail',class: "form-control"%>
+  </div>
+  <div class="mb-3">
+    <%= f.label 'パスワード' ,class: "form-label"%>
+    <%= f.password_field :password, id:'login_pass',class: "form-control" %>
+  </div>
+  <%= f.submit t('common.log-in'), id:"create-session" , class: "btn btn-primary"%>
+</div>
 <% end %>
