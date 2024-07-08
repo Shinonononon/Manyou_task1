@@ -8,16 +8,18 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("jquery")
-require("jquery_ujs")
+// require("jquery_ujs")
 
 import "bootstrap";
-import "./asset/stylesheets/application.scss";
+// import "/stylesheets/application.scss";
+// import './scripts';
+// import '../stylesheets/styles';
 
 
-// Import jQuery
-import $ from 'jquery';
-global.$ = $;
-global.jQuery = $;
+// // Import jQuery
+// import $ from 'jquery';
+// global.$ = $;
+// global.jQuery = $;
 
 //= require jquery
 //= require jquery_ujs

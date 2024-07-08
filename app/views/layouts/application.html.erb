@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -27,7 +28,7 @@
               <li class="nav-item"><%= link_to t('layouts.labels-index'), labels_path, id:"labels-index" ,class: 'mr-1'%></li>
               <li class="nav-item"><%= link_to t('layouts.new-label'), new_label_path, id:"new-label" ,class: 'mr-1'%></li>
               <li class="nav-item"><%= link_to t('layouts.account-setting'), user_path(current_user.id), id: "account-setting" ,class: 'mr-1'%></li>
-              <li class="nav-item"><%= button_to t('layouts.sign-out'), session_path(current_user.id),method: :delete, id: "sign-out",class: "btn btn-link" %></li>
+              <li class="nav-item"><%= link_to t('layouts.sign-out'), session_path(current_user.id),method: :delete, id: "sign-out" %></li>
             </ul>
           <% else %>
             <ul class="navbar-nav">
