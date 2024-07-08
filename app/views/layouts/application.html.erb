@@ -11,7 +11,6 @@
   </head>
   <body>
     <p id="notice"><%= notice %></p>
-    <p id="notice"><%= notice %></p>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#">Task app</a>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -27,7 +26,7 @@
               <li class="nav-item"><%= link_to t('layouts.labels-index'), labels_path, id:"labels-index" ,class: 'mr-1'%></li>
               <li class="nav-item"><%= link_to t('layouts.new-label'), new_label_path, id:"new-label" ,class: 'mr-1'%></li>
               <li class="nav-item"><%= link_to t('layouts.account-setting'), user_path(current_user.id), id: "account-setting" ,class: 'mr-1'%></li>
-              <li class="nav-item"><%= link_to t('layouts.sign-out'), session_path(current_user.id),method: :delete, id: "sign-out" %></li>
+              <li class="nav-item"><%= link_to t('layouts.sign-out'), session_path(current_user.id),method: :delete, id: "sign-out",class: 'mr-1' %></li>
             </ul>
           <% else %>
             <ul class="navbar-nav">

@@ -13,23 +13,25 @@
   <% end %>
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title ,class: "form-control"%>
   </div>
   <div class="field">
     <%= form.label :content %>
-    <%= form.text_area :content %>
+    <%= form.text_area :content ,class: "form-control"%>
   </div>
-  <div class="field">
-    <%= form.label :deadline_on %>
-    <%= form.date_field :deadline_on %>
-  </div>
-  <div class="field">
-    <%= form.label :priority %>
-    <%= form.select :priority, Task.priorities.keys.map { |k, i| [t("enums.task.priority.#{k}"), k] }, {include_blank: true } %>
-  </div>
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.select :status, Task.statuses.keys.map { |k, i| [t("enums.task.status.#{k}"), k] }, { include_blank: true } %>
+  <div class="d-flex justify-content-between">
+    <div class="form-group flex-fill mb-2 mr-2">
+      <%= form.label :deadline_on %>
+      <%= form.date_field :deadline_on ,class: "form-control"%>
+    </div>
+    <div class="form-group flex-fill mb-2 mr-2">
+      <%= form.label :priority %>
+      <%= form.select :priority, Task.priorities.keys.map { |k, i| [t("enums.task.priority.#{k}"), k] }, {include_blank: true } ,class: "form-control"%>
+    </div>
+    <div class="form-group flex-fill mb-2 mr-2">
+      <%= form.label :status %>
+      <%= form.select :status, Task.statuses.keys.map { |k, i| [t("enums.task.status.#{k}"), k] }, { include_blank: true } ,class: "form-control"%>
+    </div>
   </div>
   <div class="field">
     <%= form.label :label %>
@@ -38,7 +40,9 @@
       <%= label.name %>
     <% end %>
   </div>
-  <div class="actions">
-    <%= form.submit id: button_id%>
+  <div class="d-flex justify-content-end">
+    <div class="actions">
+      <%= form.submit id: button_id ,class: "btn btn-primary"%>
+    </div>
   </div>
 <% end %>

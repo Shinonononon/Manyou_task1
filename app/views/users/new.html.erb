@@ -12,12 +12,20 @@
     </div>
   <% end %>
   <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name  ,class: "form-control"%>
   <%= f.label :email %>
-  <%= f.email_field :email %>
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
-  <%= f.submit t('helpers.submit.create', model: User.model_name.human), id: "create-user" %>
+  <%= f.email_field :email  ,class: "form-control"%>
+  <div class="d-flex justify-content-between">
+    <div class="form-group flex-fill mb-2 mr-2">
+      <%= f.label :password %>
+      <%= f.password_field :password  ,class: "form-control"%>
+    </div>
+    <div class="form-group flex-fill mb-2 mr-2">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation  ,class: "form-control"%>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end">
+    <%= f.submit t('helpers.submit.create', model: User.model_name.human), id: "create-user" ,class: "btn btn-primary"%>
+  </div>
 <% end %>
