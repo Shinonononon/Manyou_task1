@@ -97,6 +97,7 @@ RSpec.describe 'ユーザ管理機能', type: :system do
       it 'ユーザを削除できる' do
         user3 = FactoryBot.create(:third_user)
         visit admin_users_path
+        sleep(1)
         accept_alert do
           click_link '削除', href: admin_user_path(user3)
         end

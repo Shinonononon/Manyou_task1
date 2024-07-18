@@ -6,7 +6,7 @@ RSpec.describe Task, type: :model do
       it 'バリデーションに失敗する' do
         task = Task.new(title: '', content: 'タスクの内容')
         expect(task).not_to be_valid
-        #expect(task.errors[:title]).to include("Title can’t be blank")
+        # expect(task.errors[:title]).to include("Title can’t be blank")
       end
     end
 
@@ -20,7 +20,7 @@ RSpec.describe Task, type: :model do
 
     context 'タスクのタイトルと説明に値が入っている場合' do
       it 'タスクを登録できる' do
-        task = Task.new(title: 'タスクのタイトル', content: 'タスクの内容')
+        task = Task.new(title: 'タスクのタイトル', content: 'タスクの内容', user: create(:user))
         expect(task).to be_valid
       end
     end
@@ -28,9 +28,10 @@ RSpec.describe Task, type: :model do
 
 
   describe '検索機能' do
-    let!(:first_task) { FactoryBot.create(:task, title: 'first_task_title') }
-    let!(:second_task) { FactoryBot.create(:second_task, title: "second_task_title") }
-    let!(:third_task) { FactoryBot.create(:third_task, title: "third_task_title") }
+    let!(:user) { FactoryBot.create(:user) }
+    let!(:first_task) { FactoryBot.create(:task, title: 'first_task_title', user: user) }
+    let!(:second_task) { FactoryBot.create(:second_task, title: "second_task_title", user: user) }
+    let!(:third_task) { FactoryBot.create(:third_task, title: "third_task_title", user: user) }
     context 'scopeメソッドでタイトルのあいまい検索をした場合' do
       it "検索ワードを含むタスクが絞り込まれる" do
         # タイトルの検索メソッドをseach_titleとしてscopeで定義した場合のコード例

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
+  has_many :labels, dependent: :destroy
   #コールバック
   before_destroy :dont_delete_last_admin
   before_update :dont_edit_last_admin

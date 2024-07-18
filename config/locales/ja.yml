@@ -8,6 +8,7 @@ ja:
     models:
       task: タスク
       user: ユーザー
+      label: ラベル
     attributes:
       task:
         title: タイトル
@@ -16,12 +17,16 @@ ja:
         deadline_on: 終了期限
         priority: 優先度
         status: ステータス
+        label: ラベル
       user:
         name: 名前
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（確認）
         admin: 管理者権限
+        task_count: タスク数
+      label:
+        name: 名前
         task_count: タスク数
   enums:
     task:
@@ -65,6 +70,8 @@ ja:
     sign-in: ログイン
     add-user: ユーザを登録する
     user-index: ユーザ一覧
+    labels-index: ラベル一覧
+    new-label: ラベルを登録する
   tasks:
     index:
       title: タスク一覧ページ
@@ -94,6 +101,19 @@ ja:
     admin_status:
       true: "あり"
       false: "なし"
+  labels:
+    index:
+      title: ラベル一覧ページ
+    new:
+      title: ラベル登録ページ
+    edit:
+      title: ラベル編集ページ
+    create:
+      created: ラベルを登録しました
+    update:
+      updated: ラベルを更新しました
+    destroy:
+      destroyed: ラベルを削除しました
   sessions:
     new:
       title: ログインページ

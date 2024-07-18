@@ -10,10 +10,23 @@ class TasksController < ApplicationController
     @tasks = if params[:sort] == 'deadline_on'
       @tasks.sort_deadline_on
     elsif params[:sort] == 'priority'
-      @tasks.sort_priority.order(created_at: :desc)
+      @tasks.sort_priority.order
     else
       @tasks.order(created_at: :desc)
     end
+
+    # if params[:search].present?
+    #   if @search_params[:title].present? && @search_params[:status].present?
+    #     @tasks = @tasks.search_title(@search_params[:title]).search_status(@search_params[:status])
+    #   elsif @search_params[:title].present?
+    #     @tasks = @tasks.search_title(@search_params[:title])
+    #   elsif @search_params[:status].present?
+    #     @tasks = @tasks.search_status(@search_params[:status])
+    #   elsif @search_params[:label].present?
+    #     @tasks = @tasks.search_label(@search_params[:label])
+    #   end
+    # end
+
 
     @tasks = @tasks.page(params[:page])
   end
@@ -29,7 +42,7 @@ class TasksController < ApplicationController
 
   # GET /tasks/1/edit
   def edit
-    @task = tasks.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
   end
 
   # POST /tasks
@@ -55,7 +68,7 @@ class TasksController < ApplicationController
   # DELETE /tasks/1
   def destroy
     @task.destroy
-    redirect_to tasks_url, notice: t('.destoryed')
+    redirect_to tasks_url, notice: t('.destroyed')
   end
 
   private
@@ -67,11 +80,11 @@ class TasksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def task_params
-    params.require(:task).permit(:title, :content, :deadline_on, :priority, :status)
+    params.require(:task).permit(:title, :content, :deadline_on, :priority, :status,label_ids: [])
   end
 
   def task_search_params
-    params.fetch(:search, {}).permit(:title, :status)
+    params.fetch(:search, {}).permit(:title, :status, :label)
   end
 
   def correct_task

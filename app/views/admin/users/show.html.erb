@@ -3,7 +3,7 @@
 <p>名前： <%= @user.name %></p>
 <p>メールアドレス: <%= @user.email %></p>
 <p>管理者権限: <%= @user.admin_status %></p>
-<table>
+<table class="table">
   <thead>
     <tr>
       <th><%= Task.human_attribute_name(:title) %></th>
