@@ -6,7 +6,7 @@ RSpec.describe Task, type: :model do
       it 'バリデーションに失敗する' do
         task = Task.new(title: '', content: 'タスクの内容')
         expect(task).not_to be_valid
-        #expect(task.errors[:title]).to include("Title can’t be blank")
+        # expect(task.errors[:title]).to include("Title can’t be blank")
       end
     end
 

@@ -4,6 +4,7 @@ class LabelsController < ApplicationController
 
   def index
     @labels = current_user.labels.includes(:tasks).all
+    # labelsで取ってるからallいらん
   end
 
   def show

@@ -28,7 +28,7 @@
   <%= f.label :admin %>
   <%= f.check_box :admin , id: 'admin_check' %><br>
   <div class="d-flex justify-content-end">
-    <%= f.submit t('helpers.submit.create', model: User.model_name.human), id: "create-user",class: "btn btn-primary" %>
+    <%= f.submit t('helpers.submit.update', model: User.model_name.human), id: "update-user",class: "btn btn-primary" %>
   </div>
 <% end %>
 <%= link_to t('common.back'), admin_users_path, id: "back"%>
